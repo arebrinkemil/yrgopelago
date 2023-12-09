@@ -6,7 +6,10 @@
 </head>
 
 <body>
-    <form action="process_booking.php" method="post">
+    <form action="/public/process_booking.php" method="post">
+        <label for="name">First Name:</label>
+        <input type="text" id="name" name="name" required>
+
         <label for="start_date">Start Date:</label>
         <input type="date" id="start_date" name="start_date" required>
 
