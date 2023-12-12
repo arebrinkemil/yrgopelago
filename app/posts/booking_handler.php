@@ -23,10 +23,10 @@ function handleBooking($postData)
             "message" => "Departure date cannot be before arrival date",
         ];
     } elseif (isRoomAvailable($roomType, $arrivalDate, $departureDate)) {
-        writeToDatabase($postData);
+        // writeToDatabase($postData);
         return [
             "status" => "success",
-            "message" => "Booking successful",
+            "message" => "Room available for the selected dates",
 
         ];
     } else {
@@ -60,8 +60,6 @@ function isRoomAvailable($roomId, $arrivalDate, $departureDate)
         ':departure_date' => $departureDate
     ]);
     $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($bookings);
-    echo ($roomId . $arrivalDate . $departureDate);
     return count($bookings) === 0;
 }
 

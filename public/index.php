@@ -1,3 +1,19 @@
+<?php
+require_once __DIR__ . '/process_booking.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $hotelData = checkHotel($_POST);
+}
+if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
+    $result = $_SESSION['result'];
+    $price = $_SESSION['price'];
+
+    unset($_SESSION['result'], $_SESSION['price']);
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +22,7 @@
 </head>
 
 <body>
-    <form action="/public/process_booking.php" method="post">
+    <form action="/public/index.php" method="post">
         <label for="name">First Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -25,6 +41,15 @@
 
         <input type="submit" value="Book">
     </form>
+
+    <?php if (isset($result)) : ?>
+        <p><?= $result['message'] ?></p>
+        <p>Price: <?= $price ?></p>
+        <form action="/public/booking.php" method="post">
+            <input type="submit" value="Book the room">
+        </form>
+
+    <?php endif; ?>
 </body>
 
 </html>
