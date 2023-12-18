@@ -1,0 +1,14 @@
+.range-date {
+  background-color: #add8e6 !important; /* Color for dates in range */
+}
+.start-date-selected,
+.end-date-selected {
+  background-color: #64909e !important; /* Different shade for start and end dates */
+  color: white !important;
+}
+
+.fade-out {
+  transition: background-color 0.5s ease-out, color 0.5s ease-out;
+  background-color: lightblue !important;
+  color: inherit !important;
+}

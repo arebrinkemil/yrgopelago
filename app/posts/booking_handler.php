@@ -67,7 +67,7 @@ function isRoomAvailable($roomId, $arrivalDate, $departureDate)
 
 function writeToDatabase($bookingData)
 {
-    var_dump($bookingData);
+
     global $db;
     $name = $bookingData['name'];
     $roomId = $bookingData['room_type'];
