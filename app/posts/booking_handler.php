@@ -53,7 +53,7 @@ function isDepartureBeforeArrival($arrivalDate, $departureDate)
 function isRoomAvailable($roomId, $arrivalDate, $departureDate)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Bookings WHERE room_id = :room_id AND NOT (departure_date <= :arrival_date OR arrival_date >= :departure_date)");
+    $stmt = $db->prepare("SELECT * FROM Bookings WHERE room_id = :room_id AND NOT (departure_date < :arrival_date OR arrival_date > :departure_date)");
     $stmt->execute([
         ':room_id' => $roomId,
         ':arrival_date' => $arrivalDate,
@@ -62,7 +62,6 @@ function isRoomAvailable($roomId, $arrivalDate, $departureDate)
     $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return count($bookings) === 0;
 }
-
 
 
 function writeToDatabase($bookingData)

@@ -9,11 +9,12 @@ $stmt = $db->query($sql);
 
 $bookings = [];
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $endDate = new DateTime($row['departure_date']);
+    $endDate->modify('+1 day');
     $bookings[] = [
         'title' => "Booking #" . $row['booking_id'],
         'start' => $row['arrival_date'],
-        'end' => $row['departure_date'],
-        'classNames' => ['booked']
+        'end' => $endDate->format('Y-m-d'),
     ];
 }
 
