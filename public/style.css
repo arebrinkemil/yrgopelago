@@ -1,9 +1,91 @@
-.range-date {
-  background-color: #add8e6 !important; /* Color for dates in range */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  align-items: center;
 }
+
+.container {
+  max-width: 1400px;
+}
+
+input[type='text'],
+input[type='date'],
+select {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+input[type='submit'] {
+  background-color: #0066cc;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+.fc {
+  background-color: #222222;
+  border-color: #333333;
+}
+
+.fc th {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.fc td,
+.fc th {
+  border-color: #444444;
+}
+
+.fc-button {
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+.fc-button:hover {
+  background-color: #444444;
+}
+
+.fc-button-primary {
+  background-color: #0066cc;
+  color: #ffffff;
+}
+
+.fc-button-primary:hover {
+  background-color: #0056b3;
+}
+
+.start-date-selected,
+.end-date-selected,
+.range-date {
+  background-color: #4caf50;
+}
+
+p {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.range-date {
+  background-color: #add8e6 !important;
+}
+
 .start-date-selected,
 .end-date-selected {
-  background-color: #64909e !important; /* Different shade for start and end dates */
+  background-color: #64909e !important;
   color: white !important;
 }
 

@@ -23,39 +23,44 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
     <title>Booking Form</title>
     <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
     <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/style.css">
 </head>
 
 <body>
-    <div id='calendar'></div>
+    <div class="container">
+        <h1>Booking Form</h1>
 
-    <form action="/public/index.php" method="post">
-        <label for="name">First Name:</label>
-        <input type="text" id="name" name="name" required>
+        <div id='calendar'></div>
 
-        <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" required>
+        <form action="/public/index.php" method="post">
+            <label for="name">First Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" required>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
 
-        <label for="room_type">Room Type:</label>
-        <select id="room_type" name="room_type" required>
-            <option value="cheap">Cheap</option>
-            <option value="medium">Medium</option>
-            <option value="expensive">Expensive</option>
-        </select>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
 
-        <input type="submit" value="Book">
-    </form>
+            <label for="room_type">Room Type:</label>
+            <select id="room_type" name="room_type" required>
+                <option value="cheap">Cheap</option>
+                <option value="medium">Medium</option>
+                <option value="expensive">Expensive</option>
+            </select>
 
-    <?php if (isset($result)) : ?>
-        <p><?= $result['message'] ?></p>
-        <p>Price: <?= $price ?></p>
-        <form action="/public/booking_success.php" method="post">
-            <input type="submit" value="Book the room">
+            <input type="submit" value="Book">
         </form>
-    <?php endif; ?>
+
+        <?php if (isset($result)) : ?>
+            <p><?= $result['message'] ?></p>
+            <p>Price: <?= $price ?></p>
+            <form action="/public/booking_success.php" method="post">
+                <input type="submit" value="Book the room">
+            </form>
+        <?php endif; ?>
+
+    </div>
 
     <script>
         function getDatesInRange(startDate, endDate) {
