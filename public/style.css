@@ -9,7 +9,17 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1400px;
+}
+
+#calendar {
+  order: 1; /* Calendar appears first */
+}
+
+#booking_result {
+  order: 2; /* Booking result appears after the calendar */
 }
 
 input[type='text'],

@@ -7,7 +7,6 @@ require '../app/autoload.php';
 
 function checkHotel($postData)
 {
-    var_dump($postData);
     $_SESSION['post'] = $postData;
     $result = handleBooking($_POST);
     $price = checkPrice($_POST);

@@ -1,15 +1,17 @@
 <?php
 require_once __DIR__ . '/process_booking.php';
+require_once __DIR__ . '/handle_result.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['room_type'])) {
+        $_SESSION['selected_room_type'] = $_POST['room_type']; // Save to session
+    }
     $hotelData = checkHotel($_POST);
 }
-if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
-    $result = $_SESSION['result'];
-    $price = $_SESSION['price'];
 
-    unset($_SESSION['result'], $_SESSION['price']);
-}
+// Retrieve the selected room type from session if available
+$selectedRoomType = isset($_SESSION['selected_room_type']) ? $_SESSION['selected_room_type'] : 'Budget';
+?>
 
 
 
@@ -30,11 +32,9 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
 <body>
     <div class="container">
         <!-- HTMX room type selector -->
-        <select id="room_type" name="room_type" required hx-get="../app/posts/booking_handler.php?room_type=" hx-trigger="change" hx-target="#calendar">
-            <option value="Budget">Budget</option>
-            <option value="Standard">Standard</option>
-            <option value="Luxury">Luxury</option>
-        </select>
+        <button class="room-type-button" data-room-type="Budget">Budget</button>
+        <button class="room-type-button" data-room-type="Standard">Standard</button>
+        <button class="room-type-button" data-room-type="Luxury">Luxury</button>
 
         <h1>Booking Form</h1>
         <div id='calendar'></div>
@@ -50,13 +50,9 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
             <input type="submit" value="Book">
         </form>
 
-        <?php if (isset($result)) : ?>
-            <p><?= $result['message'] ?></p>
-            <p>Price: <?= $price ?></p>
-            <form action="/public/booking_success.php" method="post">
-                <input type="submit" value="Book the room">
-            </form>
-        <?php endif; ?>
+        <div id="booking_result" hx-get="handle_result.php" hx-trigger="load">
+            <!-- The result will be loaded here -->
+        </div>
     </div>
 
     <script>
@@ -72,10 +68,35 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
 
         var currentCalendar = null;
 
-        document.getElementById('room_type').addEventListener('change', function() {
-            var selectedRoomType = this.value;
-            document.getElementById('room_type_hidden').value = selectedRoomType;
-            initializeCalendar(selectedRoomType);
+        document.addEventListener('DOMContentLoaded', function() {
+            var defaultRoomType = '<?php echo $selectedRoomType; ?>';
+
+            if (sessionStorage.getItem('selectedRoomType')) {
+                defaultRoomType = sessionStorage.getItem('selectedRoomType');
+            }
+
+            document.getElementById('room_type_hidden').value = defaultRoomType;
+            initializeCalendar(defaultRoomType);
+
+            htmx.trigger('#booking_result', 'load');
+        });
+
+
+
+        var buttons = document.querySelectorAll('.room-type-button');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var roomType = this.dataset.roomType;
+                document.getElementById('room_type_hidden').value = roomType;
+
+                fetch('../app/posts/booking_handler.php?room_type=' + roomType)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('calendar').innerHTML = data;
+                        initializeCalendar(roomType);
+                        htmx.trigger('#booking_result', 'load');
+                    });
+            });
         });
 
         function initializeCalendar(roomType) {
@@ -145,13 +166,10 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
 
         document.body.addEventListener('htmx:afterSwap', function(event) {
             if (event.target.id === 'calendar') {
-                var selectedRoomType = document.getElementById('room_type').value;
+                var selectedRoomType = document.getElementById('room_type_hidden').value;
                 initializeCalendar(selectedRoomType);
             }
         });
-
-
-        // initializeCalendar('default_room_type');
     </script>
 
 </body>
