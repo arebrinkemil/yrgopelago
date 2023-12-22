@@ -24,31 +24,29 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
     <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
     <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
     <link rel="stylesheet" href="/public/style.css">
+    <script src="https://unpkg.com/htmx.org"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>Booking Form</h1>
+        <!-- HTMX room type selector -->
+        <select id="room_type" name="room_type" required hx-get="../app/posts/booking_handler.php?room_type=" hx-trigger="change" hx-target="#calendar">
+            <option value="Budget">Budget</option>
+            <option value="Standard">Standard</option>
+            <option value="Luxury">Luxury</option>
+        </select>
 
+        <h1>Booking Form</h1>
         <div id='calendar'></div>
 
         <form action="/public/index.php" method="post">
             <label for="name">First Name:</label>
             <input type="text" id="name" name="name" required>
-
             <label for="start_date">Start Date:</label>
             <input type="date" id="start_date" name="start_date" required>
-
             <label for="end_date">End Date:</label>
             <input type="date" id="end_date" name="end_date" required>
-
-            <label for="room_type">Room Type:</label>
-            <select id="room_type" name="room_type" required>
-                <option value="cheap">Cheap</option>
-                <option value="medium">Medium</option>
-                <option value="expensive">Expensive</option>
-            </select>
-
+            <input type="hidden" id="room_type_hidden" name="room_type">
             <input type="submit" value="Book">
         </form>
 
@@ -59,7 +57,6 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
                 <input type="submit" value="Book the room">
             </form>
         <?php endif; ?>
-
     </div>
 
     <script>
@@ -73,33 +70,31 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
             return dateArray;
         }
 
+        var currentCalendar = null;
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('room_type').addEventListener('change', function() {
+            var selectedRoomType = this.value;
+            document.getElementById('room_type_hidden').value = selectedRoomType;
+            initializeCalendar(selectedRoomType);
+        });
+
+        function initializeCalendar(roomType) {
+            if (currentCalendar) {
+                currentCalendar.destroy();
+            }
+
             var calendarEl = document.getElementById('calendar');
             var selectingStartDate = true;
             var startDate, endDate;
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            currentCalendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                // ... other options ...
                 events: function(fetchInfo, successCallback, failureCallback) {
-                    fetch('../app/posts/booked_dates.php')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log(data); // Log the data
-                            successCallback(data); // Provide the data to FullCalendar
-                        })
-                        .catch(error => {
-                            console.error('Error fetching data:', error);
-                            failureCallback(error);
-                        });
+                    fetch('../app/posts/booked_dates.php?room_type=' + roomType)
+                        .then(response => response.json())
+                        .then(data => successCallback(data))
+                        .catch(error => failureCallback(error));
                 },
-
                 dateClick: function(info) {
                     // Clear previous selections
                     document.querySelectorAll('.start-date-selected, .end-date-selected, .range-date, .fade-out').forEach(function(el) {
@@ -116,7 +111,7 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
                             startCell.classList.add('start-date-selected');
                             setTimeout(function() {
                                 startCell.classList.add('fade-out');
-                            }, 10); // Short delay to ensure the transition is applied
+                            }, 10);
                         }
                     } else {
                         endDate = new Date(info.dateStr);
@@ -128,10 +123,10 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
                             endCell.classList.add('end-date-selected');
                             setTimeout(function() {
                                 endCell.classList.add('fade-out');
-                            }, 10); // Short delay to ensure the transition is applied
+                            }, 10);
                         }
 
-                        // Get dates in range and apply class
+
                         var datesInRange = getDatesInRange(startDate, endDate);
                         datesInRange.forEach(function(date) {
                             var dateString = date.toISOString().split('T')[0];
@@ -141,11 +136,24 @@ if (isset($_SESSION['result']) && isset($_SESSION['price'])) {
                             }
                         });
                     }
+
                 }
+
             });
-            calendar.render();
+            currentCalendar.render();
+        }
+
+        document.body.addEventListener('htmx:afterSwap', function(event) {
+            if (event.target.id === 'calendar') {
+                var selectedRoomType = document.getElementById('room_type').value;
+                initializeCalendar(selectedRoomType);
+            }
         });
+
+
+        // initializeCalendar('default_room_type');
     </script>
+
 </body>
 
 </html>

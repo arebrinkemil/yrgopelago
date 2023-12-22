@@ -49,9 +49,9 @@ function getCurrentPrices()
         }
 
         $prices = array(
-            "cheap" => $cheapPrice,
-            "medium" => $mediumPrice,
-            "expensive" => $expensivePrice
+            "Budget" => $cheapPrice,
+            "Standard" => $mediumPrice,
+            "Luxury" => $expensivePrice
         );
 
         return $prices;

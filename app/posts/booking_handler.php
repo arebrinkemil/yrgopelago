@@ -111,11 +111,11 @@ function daysBookedCalc($start, $end)
 
 function typeOfRoom($room)
 {
-    if ($room == "cheap") {
+    if ($room == "Budget") {
         return 1;
-    } elseif ($room == "medium") {
+    } elseif ($room == "Standard") {
         return 2;
-    } elseif ($room == "expensive") {
+    } elseif ($room == "Luxury") {
         return 3;
     }
 }
