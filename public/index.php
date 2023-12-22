@@ -31,7 +31,6 @@ $selectedRoomType = isset($_SESSION['selected_room_type']) ? $_SESSION['selected
 
 <body>
     <div class="container">
-        <!-- HTMX room type selector -->
         <button class="room-type-button" data-room-type="Budget">Budget</button>
         <button class="room-type-button" data-room-type="Standard">Standard</button>
         <button class="room-type-button" data-room-type="Luxury">Luxury</button>
@@ -51,7 +50,7 @@ $selectedRoomType = isset($_SESSION['selected_room_type']) ? $_SESSION['selected
         </form>
 
         <div id="booking_result" hx-get="handle_result.php" hx-trigger="load">
-            <!-- The result will be loaded here -->
+
         </div>
     </div>
 

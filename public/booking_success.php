@@ -4,6 +4,7 @@ require_once __DIR__ . '/process_booking.php';
 
 
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     writeToDatabase($_SESSION['post']);
     header('Location: booking_success.php');
