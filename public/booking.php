@@ -29,7 +29,11 @@ if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($room
         error_log($_SESSION['totalPrice']);
         $totalCost = $_SESSION['totalPrice'];
 
+
+
         // $paymentResult = processPayment($paymentKey, $totalCost);
+
+        //byt ut för att testa payment
         $paymentResult['success'] = true;
 
         if ($paymentResult['success']) {
