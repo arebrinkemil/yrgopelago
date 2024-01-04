@@ -275,3 +275,7 @@ label img {
     margin-bottom: 20px;
   }
 }
+
+.admin_activity_img {
+  max-width: 200px;
+}

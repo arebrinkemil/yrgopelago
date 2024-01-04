@@ -65,8 +65,18 @@ function getAllBookingsWithActivities($db)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Fetch all bookings with their activities
 $bookingsWithActivities = getAllBookingsWithActivities($db);
+
+function getAllActivities($db)
+{
+    $sql = "SELECT * FROM Hotel_Features";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Fetch all activities
+$activities = getAllActivities($db);
 
 
 
@@ -77,6 +87,30 @@ require '../views/navbar.php';
 ?>
 <h1>Admin Panel</h1>
 <section>
+    <h2>Activities</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Cost</th>
+                <th>Image URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($activities as $activity) : ?>
+                <tr>
+                    <td><?= htmlspecialchars($activity['name']) ?></td>
+                    <td><?= htmlspecialchars($activity['description']) ?></td>
+                    <td><?= htmlspecialchars($activity['cost']) ?></td>
+                    <td><img class="admin_activity_img" src="../../public/images/<?php echo htmlspecialchars($activity['image_url']) ?>"></td>
+                    <td><a href="edit_activity.php?feature_id=<?= htmlspecialchars($activity['feature_id']) ?>">Edit</a></td>
+                    <td><a href="delete_activity.php?feature_id=<?= htmlspecialchars($activity['feature_id']) ?>">Delete</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
     <h2>Add Activity</h2>
     <form method="post" action="">
         <input type="text" name="activity_name" placeholder="Activity Name" required>
@@ -131,6 +165,7 @@ require '../views/navbar.php';
         </tbody>
     </table>
 </section>
+
 <?php
 require '../views/footer.php';
 ?>
