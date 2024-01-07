@@ -186,6 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then((responseData) => {
         console.log('Success:', responseData);
+        if (responseData.status === 'success') {
+          localStorage.setItem('bookingInfo', JSON.stringify(responseData));
+          window.location.href = '/public/bookingSuccesful.php';
+        }
         document.getElementById('bookingModal').style.display = 'none';
       })
       .catch((error) => {
