@@ -186,8 +186,10 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then((responseData) => {
         console.log('Success:', responseData);
+        console.log('vi kom också hit');
         if (responseData.status === 'success') {
           localStorage.setItem('bookingInfo', JSON.stringify(responseData));
+          console.log('vi kom hit');
           window.location.href = '/public/bookingSuccesful.php';
         }
         document.getElementById('bookingModal').style.display = 'none';
@@ -234,7 +236,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function createActivityCheckboxes(activities) {
   const container = document.getElementById('activitiesContainer');
   activities.forEach((activity) => {
-    // Create a wrapper div for each activity
     const activityWrapper = document.createElement('div');
     activityWrapper.classList.add('activity-wrapper');
 
@@ -261,10 +262,8 @@ function createActivityCheckboxes(activities) {
     label.appendChild(img);
     label.appendChild(description);
 
-    // Append the label to the wrapper div
     activityWrapper.appendChild(label);
 
-    // Append the wrapper div to the container
     container.appendChild(activityWrapper);
   });
 }

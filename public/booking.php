@@ -43,12 +43,27 @@ if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($room
             if ($bookingResult['success']) {
 
                 echo json_encode([
+                    //ändra till variabler och ta bort status
+
                     'status' => 'success',
-                    'message' => 'Booking successful',
-                    'bookingId' => $bookingResult['bookingId'],
-                    'guestId' => $bookingResult['guestId'],
-                    'activities' => $activities,
-                    'totalCost' => $_SESSION['totalPrice']
+                    "island" => "Main island",
+                    "hotel" => "Centralhotellet",
+                    "arrival_date" => $startDate,
+                    "departure_date" => $endDate,
+                    "total_cost" => $_SESSION['totalPrice'],
+                    "stars" => 3,
+                    "features" => [
+                        $activities
+                    ],
+                    "additional_info" => [
+                        "greeting" => "Thank you for choosing Centralhotellet",
+                        "imageUrl" => "https://upload.wikimedia.org/wikipedia/commons/e/e2/Hotel_Boscolo_Exedra_Nice.jpg",
+                        'message' => 'Booking successful',
+                        'bookingId' => $bookingResult['bookingId'],
+                        'guestId' => $bookingResult['guestId'],
+                    ]
+
+
                 ]);
             } else {
 
