@@ -1,15 +1,176 @@
 <?php
 
 require '../app/views/header.php';
-
-require '../app/views/navbar.php';
 ?>
-<iframe src="https://giphy.com/embed/JvqRXiY3zrX3DTowb4" width="384" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-<p><a href="https://giphy.com/gifs/JvqRXiY3zrX3DTowb4">via GIPHY</a></p>
-<div class="tenor-gif-embed" data-postid="23625303" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/cat-jump-happy-jumping-for-joy-jumping-gif-23625303">Cat Jump Sticker</a>from <a href="https://tenor.com/search/cat-stickers">Cat Stickers</a></div>
-<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/css/glide.core.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/css/glide.theme.css" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <?php
+
+    require '../app/views/navbar.php';
+    ?>
 
 
+
+    <main>
+        <section class="hero">
+            <div class="container grid">
+                <div id="hero-container">
+                    <p>Vinga Hotell</p>
+                    <h1 class="title">Upptäck Vingas skönhet.<br>Din kustnära oas</h1>
+                    <p>Lorem ipsum</p>
+                </div>
+
+                <div id="hero-image">
+                    <img src="https://source.unsplash.com/bnt4w5jqgmo" width="100%" height="100%" />
+                    <button>
+                        Boka här →
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="hotel-rooms tight">
+            <div class="room-section">
+                <ul class="room-list">
+                    <li data-room="sjobod">Mysig Sjöbod</li>
+                    <li data-room="fyrtorn">Vinga Fyr</li>
+                    <li data-room="kaptengard">Lyxig Kaptengård</li>
+
+                </ul>
+                <div class="image-container">
+                    <img src="images/sjobod.png" alt="Room Image" id="roomImage">
+
+                </div>
+            </div>
+        </section>
+        <section class="image-carousel wide">
+            <div class="glide heropeek">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <img class="glide__slide" src="images/ocean-1.jpg">
+                        <img class="glide__slide" src="images/wave.jpg">
+                        <img class="glide__slide" src="images/ocean-2.jpg">
+                        <img class="glide__slide" src="images/ocean.jpg">
+                        <img class="glide__slide" src="images/ocean-3.jpg">
+                        <img class="glide__slide" src="images/ocean-1.jpg">
+                        <img class="glide__slide" src="images/wave.jpg">
+                        <img class="glide__slide" src="images/ocean-2.jpg">
+                        <img class="glide__slide" src="images/ocean.jpg">
+                        <img class="glide__slide" src="images/ocean-3.jpg">
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+        <section class="about wide">
+
+            <div id="activitiesContainer"></div>
+
+
+
+
+        </section>
+        <section class="specials">
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var roomListItems = document.querySelectorAll('.room-list li');
+            roomListItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    roomListItems.forEach(function(i) {
+                        i.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    var roomType = this.getAttribute('data-room');
+                    var imagePath = 'images/' + roomType + '.png';
+
+                    document.getElementById('roomImage').src = imagePath;
+                });
+            });
+
+            var sjobodElement = document.querySelector('.room-list li[data-room="sjobod"]');
+            if (sjobodElement) {
+                sjobodElement.click();
+            }
+
+
+
+            fetch('getActivities.php')
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === 'success') {
+                        createActivityCheckboxes(data.activities);
+                    } else {
+                        console.error('Error fetching activities:', data.message);
+                    }
+                })
+                .catch((error) => console.error('Error:', error));
+        });
+
+        function createActivityCheckboxes(activities) {
+            const container = document.getElementById('activitiesContainer');
+            container.classList.add('grid-container');
+
+            activities.forEach((activity) => {
+                const activityWrapper = document.createElement('div');
+                activityWrapper.classList.add('grid-item', 'activity-wrapper');
+
+                const gridContent = document.createElement('div');
+                gridContent.classList.add('grid-content');
+
+                const h3 = document.createElement('h3');
+                h3.classList.add('activity-h3');
+                h3.textContent = `${activity.name} - $${activity.cost} `;
+
+
+                const description = document.createElement('p');
+                description.classList.add('activity-description');
+                description.textContent = activity.description.length > 100 ? activity.description.substring(0, 100) + "..." : activity.description;
+
+
+                gridContent.appendChild(h3);
+
+                gridContent.appendChild(description);
+
+                activityWrapper.appendChild(gridContent);
+
+                container.appendChild(activityWrapper);
+            });
+        }
+
+
+
+
+        var glideHeroPeek = new Glide('.heropeek', {
+            type: 'carousel',
+            animationDuration: 1000,
+            autoplay: 3000,
+            focusAt: 'center',
+            startAt: 1,
+            perView: 1,
+            peek: {
+                before: 20,
+                after: 20
+            },
+            gap: 0
+        });
+
+
+
+        glideHeroPeek.mount();
+    </script>
+
+</body>
+
+</html>
 
 
 <?php

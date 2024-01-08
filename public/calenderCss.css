@@ -1,0 +1,153 @@
+.selected-range {
+  background-color: #5f99f5 !important;
+}
+
+.booked-date {
+  pointer-events: none;
+  background-color: #3a3a3a !important;
+  opacity: 0.8;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #222;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #777;
+  width: 80%;
+  height: 80vh;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input[type='text'],
+input[type='date'],
+button {
+  background-color: #333;
+  color: #ddd;
+  border: 1px solid #555;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+button.active,
+button:active {
+  background-color: #555;
+  outline: none;
+}
+
+label {
+  color: #ccc;
+}
+
+label img {
+  max-width: 500px;
+}
+
+#activitiesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.activity-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.activity-label {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.activity-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.activity-checkbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  opacity: 0.8;
+}
+
+.activity-description {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+/* Custom checkbox styling */
+.activity-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f5f5f5;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.activity-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.activity-checkbox:checked::before {
+  content: '✓';
+  font-size: 1.5em;
+  color: white;
+}

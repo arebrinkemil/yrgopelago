@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
+    validRange: {
+      start: '2024-01-01',
+      end: '2024-02-01',
+    },
     selectable: true,
     selectMirror: true,
     selectAllow: function (selectInfo) {

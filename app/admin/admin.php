@@ -125,94 +125,102 @@ $activities = getAllActivities($db);
 
 
 require '../views/header.php';
-
-require '../views/navbar.php';
-
 ?>
-<h1>Admin Panel</h1>
-<section>
-    <h2>Activities</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Cost</th>
-                <th>Image URL</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($activities as $activity) : ?>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <?php
+
+
+    require '../views/navbar.php';
+
+    ?>
+    <h1>Admin Panel</h1>
+    <section>
+        <h2>Activities</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars((string) $activity['name']) ?></td>
-                    <td><?= htmlspecialchars((string) $activity['description']) ?></td>
-                    <td><?= htmlspecialchars((string) $activity['cost']) ?></td>
-                    <td><img class="admin_activity_img" src="../../public/images/<?php echo htmlspecialchars($activity['image_url']) ?>"></td>
-                    <td><a href="edit_activity.php?feature_id=<?= $activity['feature_id'] ?>">Edit</a></td>
-                    <td><a href="admin.php?delete=<?= $activity['feature_id'] ?>">Delete</a></td>
-
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                    <th>Image URL</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($activities as $activity) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars((string) $activity['name']) ?></td>
+                        <td><?= htmlspecialchars((string) $activity['description']) ?></td>
+                        <td><?= htmlspecialchars((string) $activity['cost']) ?></td>
+                        <td><img class="admin_activity_img" src="../../public/images/<?php echo htmlspecialchars($activity['image_url']) ?>"></td>
+                        <td><a href="edit_activity.php?feature_id=<?= $activity['feature_id'] ?>">Edit</a></td>
+                        <td><a href="admin.php?delete=<?= $activity['feature_id'] ?>">Delete</a></td>
 
-    <h2>Add Activity</h2>
-    <form method="post" action="" enctype="multipart/form-data">
-        <input type="text" name="activity_name" placeholder="Activity Name" required>
-        <textarea name="activity_description" placeholder="Activity Description"></textarea>
-        <input type="number" name="activity_cost" placeholder="Cost" required>
-        <input type="file" name="activity_image" required>
-        <button type="submit" name="add_activity">Add Activity</button>
-    </form>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
 
-</section>
+        <h2>Add Activity</h2>
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="text" name="activity_name" placeholder="Activity Name" required>
+            <textarea name="activity_description" placeholder="Activity Description"></textarea>
+            <input type="number" name="activity_cost" placeholder="Cost" required>
+            <input type="file" name="activity_image" required>
+            <button type="submit" name="add_activity">Add Activity</button>
+        </form>
 
-<section>
-    <h2>Update Room Prices</h2>
-    <form method="post" action="">
-        <?php
-        $stmt = $db->query("SELECT room_id, room_type, price FROM Rooms");
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "<div>";
-            echo "<label>{$row['room_type']}</label>";
-            echo "<input type='number' name='rooms[{$row['room_id']}]' value='{$row['price']}' required>";
-            echo "</div>";
-        }
-        ?>
-        <button type="submit" name="update_prices">Update Prices</button>
-    </form>
-</section>
-<section>
-    <h2>All Bookings with Activities</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Booking ID</th>
-                <th>Guest Name</th>
-                <th>Room Type</th>
-                <th>Arrival Date</th>
-                <th>Departure Date</th>
-                <th>Total Cost</th>
-                <th>Booked Activities</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($bookingsWithActivities as $booking) : ?>
+    </section>
+
+    <section>
+        <h2>Update Room Prices</h2>
+        <form method="post" action="">
+            <?php
+            $stmt = $db->query("SELECT room_id, room_type, price FROM Rooms");
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div>";
+                echo "<label>{$row['room_type']}</label>";
+                echo "<input type='number' name='rooms[{$row['room_id']}]' value='{$row['price']}' required>";
+                echo "</div>";
+            }
+            ?>
+            <button type="submit" name="update_prices">Update Prices</button>
+        </form>
+    </section>
+    <section>
+        <h2>All Bookings with Activities</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><?= htmlspecialchars((string) $booking['booking_id']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['guest_name']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['room_type']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['arrival_date']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['departure_date']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['total_cost']) ?></td>
-                    <td><?= htmlspecialchars((string) $booking['activities']) ?></td>
-
+                    <th>Booking ID</th>
+                    <th>Guest Name</th>
+                    <th>Room Type</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Total Cost</th>
+                    <th>Booked Activities</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</section>
+            </thead>
+            <tbody>
+                <?php foreach ($bookingsWithActivities as $booking) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars((string) $booking['booking_id']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['guest_name']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['room_type']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['arrival_date']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['departure_date']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['total_cost']) ?></td>
+                        <td><?= htmlspecialchars((string) $booking['activities']) ?></td>
 
-<?php
-require '../views/footer.php';
-?>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
+
+    <?php
+    require '../views/footer.php';
+    ?>
