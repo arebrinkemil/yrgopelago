@@ -32,7 +32,25 @@ require '../app/views/header.php';
                 </div>
             </div>
         </section>
+
+        <div class="banner">
+            <div class="text-section">
+                <h1>Spara Mer På Din Vistelse!</h1>
+                <p class="light italic bold">Boka Minst Tre Dagar och Få 30% Rabatt
+                </p>
+                <p class="light">
+                    Upptäck vårt fantastiska erbjudande! När du bokar en vistelse på tre dagar eller längre hos oss, belönas du med en otrolig rabatt på 30%. Det är det perfekta tillfället att förlänga din semester och njuta av mer för mindre. Missa inte chansen att skapa oförglömliga minnen samtidigt som du sparar pengar. Boka din resa idag!
+                </p>
+
+            </div>
+            <div class="image-section">
+
+                <img src="/public/images/vingafyr.png" alt="Banner Image">
+            </div>
+        </div>
+
         <section class="hotel-rooms tight">
+            <h3 class="top-left-text">Våra rum</h3>
             <div class="room-section">
                 <ul class="room-list">
                     <li data-room="sjobod">Mysig Sjöbod</li>
@@ -67,6 +85,7 @@ require '../app/views/header.php';
 
         </section>
         <section class="about wide">
+            <h3 class="top-left-text">Våra paket</h3>
 
             <div id="activitiesContainer"></div>
 

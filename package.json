@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "date-input-polyfill": "^2.14.0",
     "fullcalendar": "^6.1.10"
   }
 }

@@ -1,12 +1,17 @@
-<div class="navbar">
-    <a href="/public/index.php" class="logo">LUNARI</a>
-    <div class="language-selector">
-        <a href="#">EN <i class="arrow-down"></i></a>
+<nav class="navbar">
+    <div class="navbar-container container">
+        <input type="checkbox" name="" id="">
+        <div class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+        </div>
+        <ul class="menu-items">
+            <li> <a href="/public/rooms.php" class="nav-item">Rum</a></li>
+            <li><a href="/public/calender.php" class="nav-item">Boka</a></li>
+            <li><a href="/public/login.php" class="nav-item">Login</a></li>
 
+        </ul>
+        <h1><a href="/public/index.php" class="logo">Vinga</a></h1>
     </div>
-    <div class="nav-items">
-        <a href="/public/index.php" class="nav-item">Home</a>
-        <a href="/public/calender.php" class="nav-item">Calender</a>
-        <a href="/public/login.php" class="nav-item">Login</a>
-    </div>
-</div>
+</nav>

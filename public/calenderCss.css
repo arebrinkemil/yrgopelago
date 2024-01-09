@@ -74,6 +74,11 @@ label img {
   max-width: 500px;
 }
 
+.rooms {
+  margin: 100px 0;
+  position: relative;
+}
+
 #activitiesContainer {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -127,7 +132,6 @@ label img {
   margin-top: 20px;
 }
 
-/* Custom checkbox styling */
 .activity-checkbox {
   -webkit-appearance: none;
   appearance: none;
@@ -150,4 +154,26 @@ label img {
   content: '✓';
   font-size: 1.5em;
   color: white;
+}
+
+#dateSelectionForm label,
+#dateSelectionForm input {
+  display: inline-block;
+  margin: 5px;
+}
+
+#dateSelectionForm input {
+  width: calc(50% - 10px);
+}
+
+@media (max-width: 600px) {
+  #dateSelectionForm label,
+  #dateSelectionForm input {
+    display: block;
+    width: calc(100% - 10px);
+  }
+
+  #dateSelectionForm input {
+    margin-bottom: 10px;
+  }
 }

@@ -1,17 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
-body {
-  font-family: 'Playfair Display', serif;
-  color: #040415;
-}
-
-:root {
-  --color-dark: #040415;
-  --color-gray: #404415;
-  --color-blue: #3b3bad;
-  --color-light: #f9f9f9;
-}
-
 .header {
   background-color: var(--color-blue);
   color: var(--color-light);
@@ -25,6 +11,14 @@ main {
 
 section {
   margin: 100px 0;
+  position: relative;
+}
+
+.top-left-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
 }
 
 .wide {
@@ -72,14 +66,6 @@ section {
   font-size: 5rem;
 }
 
-button {
-  padding: 1rem;
-  border-radius: 0;
-  color: black;
-  font-weight: bold;
-  background-color: white;
-}
-
 .room-section {
   display: flex;
   align-items: center;
@@ -92,7 +78,7 @@ button {
 }
 
 .room-list li {
-  font-size: 4vw;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   cursor: pointer;
   padding: 10px;
   transition: transform 0.3s ease, color 0.3s ease;
@@ -112,16 +98,6 @@ button {
 .image-container img {
   width: 100%;
   height: auto;
-}
-
-.footer {
-  background-color: var(--color-dark);
-  color: var(--color-light);
-}
-
-.button {
-  background-color: var(--color-gray);
-  color: var(--color-light);
 }
 
 .button:hover {
@@ -168,22 +144,35 @@ button {
   right: 0;
 }
 
-p {
-  color: #040415;
+.activitiesContainer {
+  margin-top: 75px;
 }
 
-a {
-  color: #3b3bad;
+.banner {
+  display: flex;
+  width: 100%;
 }
 
-a:hover {
-  color: #404415;
+.text-section {
+  background-color: black;
+  color: white;
+  width: 75%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.bold {
-  font-weight: 700;
+.image-section {
+  width: 25%;
+  display: flex;
+  overflow: hidden;
 }
 
-.regular {
-  font-weight: 400;
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
