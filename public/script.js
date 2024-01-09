@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
+    longPressDelay: 0,
+    eventLongPressDelay: 0,
+    selectLongPressDelay: 0,
     validRange: {
       start: '2024-01-01',
       end: '2024-02-01',
@@ -218,7 +221,25 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch((error) => console.error('Error:', error));
 
   function displayRoomPrices(roomPrices) {
-    console.log('Room Prices:', roomPrices);
+    roomPrices.forEach((room) => {
+      let priceTagId;
+      switch (room.room_type) {
+        case 'Budget':
+          priceTagId = 'cheapRoomPrice';
+          break;
+        case 'Standard':
+          priceTagId = 'mediumRoomPrice';
+          break;
+        case 'Luxury':
+          priceTagId = 'expensiveRoomPrice';
+          break;
+      }
+
+      const priceTag = document.getElementById(priceTagId);
+      if (priceTag) {
+        priceTag.textContent = `Pris per natt: ${room.price} `;
+      }
+    });
   }
 
   function displayHotelFeatures(hotelFeatures) {
@@ -243,9 +264,21 @@ function createActivityCheckboxes(activities) {
     const activityWrapper = document.createElement('div');
     activityWrapper.classList.add('activity-wrapper');
 
-    const label = document.createElement('label');
-    label.classList.add('activity-label');
-    label.textContent = `${activity.name} - $${activity.cost} `;
+    const h2 = document.createElement('h2');
+    h2.classList.add('activity-label');
+
+    const activityInfo = document.createElement('div');
+    activityInfo.classList.add('activity-info');
+
+    const activityName = document.createElement('span');
+    activityName.textContent = activity.name;
+    activityInfo.appendChild(activityName);
+
+    const activityPrice = document.createElement('span');
+    activityPrice.textContent = `  $${activity.cost} `;
+    activityInfo.appendChild(activityPrice);
+
+    h2.appendChild(activityInfo);
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -262,11 +295,16 @@ function createActivityCheckboxes(activities) {
     description.classList.add('activity-description');
     description.textContent = activity.description;
 
-    label.appendChild(checkbox);
-    label.appendChild(img);
-    label.appendChild(description);
+    activityWrapper.addEventListener('click', () => {
+      checkbox.checked = !checkbox.checked;
+      activityWrapper.classList.toggle('checked-activity', checkbox.checked);
+    });
 
-    activityWrapper.appendChild(label);
+    h2.appendChild(checkbox);
+    h2.appendChild(img);
+    h2.appendChild(description);
+
+    activityWrapper.appendChild(h2);
 
     container.appendChild(activityWrapper);
   });

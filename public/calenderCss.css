@@ -1,3 +1,23 @@
+input[type='date'] {
+  background-color: #0080ff;
+  padding: 15px;
+
+  top: 50%;
+  left: 50%;
+  font-family: 'Roboto Mono', monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator {
+  background-color: #ffffff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
 .selected-range {
   background-color: #5f99f5 !important;
 }
@@ -6,6 +26,137 @@
   pointer-events: none;
   background-color: #3a3a3a !important;
   opacity: 0.8;
+}
+
+.fc-button-group,
+.fc-today-button,
+.fc-today-button:hover {
+  display: none !important;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn {
+  background-color: white;
+  border: 1px solid #d3d3d3; /* Assuming @gray-light is #d3d3d3 */
+  color: #696969; /* Assuming @gray-dark is #696969 */
+  padding: 0.5rem;
+  text-transform: lowercase;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards__item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards__item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards__item {
+    width: 33.3333%;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card:hover .card__image {
+  filter: contrast(100%);
+}
+
+.card__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.card__image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  filter: contrast(70%);
+  overflow: hidden;
+  position: relative;
+  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+}
+
+.card__image::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+@media (min-width: 40rem) {
+  .card__image::before {
+    padding-top: 66.6%; /* 3:2 aspect ratio */
+  }
+}
+
+.card__image--cheap {
+  background-image: url(/public/images/sjobod.png);
+}
+
+.card__image--medium {
+  background-image: url(/public/images/fyrtorn.png);
+}
+
+.card__image--expensive {
+  background-image: url(/public/images/kaptengard.png);
+}
+
+.card__title {
+  color: #696969; /* Assuming @gray-dark is #696969 */
+  font-size: 1.25rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.card__text {
+  flex: 1 1 auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.latest-clicked {
+  border: 2px solid blue;
+}
+
+#bookingForm {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .modal {
@@ -44,13 +195,20 @@
 }
 
 input[type='text'],
-input[type='date'],
-button {
+input[type='date'] {
   background-color: #333;
   color: #ddd;
   border: 1px solid #555;
 }
-
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main {
+  width: 100%;
+  max-width: 1400px;
+}
 button {
   padding: 10px 20px;
   cursor: pointer;
@@ -71,7 +229,7 @@ label {
 }
 
 label img {
-  max-width: 500px;
+  max-width: 250px;
 }
 
 .rooms {
@@ -85,14 +243,7 @@ label img {
   grid-gap: 20px;
   padding: 20px;
   justify-content: center;
-}
-
-.activity-wrapper {
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
+  max-width: 1200px;
 }
 
 .activity-label {
@@ -107,63 +258,60 @@ label img {
   background-position: center;
 }
 
-.activity-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.5;
-  z-index: 1;
-}
-
-.activity-checkbox {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 3;
-  opacity: 0.8;
-}
-
-.activity-description {
-  position: relative;
-  z-index: 2;
-  margin-top: 20px;
-}
-
-.activity-checkbox {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #f5f5f5;
-  width: 25px;
-  height: 25px;
-  border: 1px solid #c0c0c0;
+.activity-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 10px;
   border-radius: 5px;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
+  transition: background-color 0.3s;
+  aspect-ratio: unset;
 }
 
-.activity-checkbox:checked {
-  background-color: #007bff;
-  border-color: #007bff;
+.checkbox {
+  display: none;
 }
 
-.activity-checkbox:checked::before {
-  content: '✓';
-  font-size: 1.5em;
+.checked-activity {
+  background-color: blue;
   color: white;
 }
 
-#dateSelectionForm label,
+.activity-label {
+  color: var(--color-dark);
+  min-height: 0;
+  background: none;
+}
+
+.activity-label img,
+.activity-description {
+  display: none;
+}
+
+.activity-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* #dateSelectionForm label,
 #dateSelectionForm input {
   display: inline-block;
   margin: 5px;
+} */
+
+#dateSelectionForm {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
 }
 
-#dateSelectionForm input {
-  width: calc(50% - 10px);
+.startDate,
+.endDate {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
@@ -175,5 +323,10 @@ label img {
 
   #dateSelectionForm input {
     margin-bottom: 10px;
+  }
+
+  #dateSelectionForm {
+    flex-wrap: wrap;
+    gap: 0;
   }
 }

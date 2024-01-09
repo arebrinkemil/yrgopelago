@@ -26,7 +26,7 @@ require '../app/views/header.php';
 
                 <div id="hero-image">
                     <img src="https://source.unsplash.com/bnt4w5jqgmo" width="100%" height="100%" />
-                    <button>
+                    <button class="small-button">
                         Boka här →
                     </button>
                 </div>
