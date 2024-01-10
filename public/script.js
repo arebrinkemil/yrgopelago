@@ -67,6 +67,12 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.endSelection = null;
   }
 
+  function clearMarkedDates() {
+    document.querySelectorAll('.selected-range').forEach(function (el) {
+      el.classList.remove('selected-range');
+    });
+  }
+
   function markDate(dateStr) {
     let cell = document.querySelector(`[data-date='${dateStr}']`);
     if (cell) {
@@ -75,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function markRange(startDateStr, endDateStr) {
+    clearMarkedDates();
     let startDate = new Date(startDateStr);
     let endDate = new Date(endDateStr);
     endDate.setDate(endDate.getDate() + 1);
@@ -83,6 +90,30 @@ document.addEventListener('DOMContentLoaded', function () {
       startDate.setDate(startDate.getDate() + 1);
     }
   }
+
+  function handleDatePickerChange() {
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    let startDate = startDateInput.value;
+    let endDate = endDateInput.value;
+
+    if (startDate) {
+      calendar.startSelection = startDate;
+      markDate(startDate);
+    }
+
+    if (endDate) {
+      calendar.endSelection = endDate;
+      markRange(startDate, endDate);
+    }
+  }
+
+  document
+    .getElementById('startDate')
+    .addEventListener('change', handleDatePickerChange);
+  document
+    .getElementById('endDate')
+    .addEventListener('change', handleDatePickerChange);
 
   function updateCalendarEvents(eventsData) {
     calendar.removeAllEvents();
