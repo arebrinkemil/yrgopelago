@@ -15,7 +15,6 @@ section {
 }
 
 .top-left-text {
-  position: absolute;
   top: 0;
   left: 0;
   margin: 10px;
@@ -69,6 +68,11 @@ section {
 .room-section {
   display: flex;
   align-items: center;
+  padding-top: 55px;
+}
+
+#roomDescription {
+  width: 50%;
 }
 
 .room-list {
@@ -87,7 +91,7 @@ section {
 .room-list li:hover,
 .room-list li.active {
   transform: translateX(20px);
-  color: gray;
+  color: var(--color-darkblue);
 }
 
 .image-container {
@@ -115,37 +119,62 @@ section {
   margin: 0 auto;
 }
 
-@media (max-width: 1050px) {
-  .grid-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+.activity-wrapper {
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid var(--color-blue);
+  margin-top: 1px;
+  margin-left: 1px;
+  box-sizing: border-box;
+}
+
+.activity-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.grid-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-h3,
+.activity-description {
+  margin: 5px 0;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    margin-left: 0;
   }
-}
 
-.grid-item {
-  position: relative;
-  padding-top: 100%;
-  background-color: #f0f0f0;
-  border: 2px solid var(--color-blue);
-  margin: -1px;
-  z-index: 1;
-}
+  .activity-wrapper {
+    margin-top: 1px;
+    margin-left: 0;
+  }
 
-.grid-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
+  .activity-wrapper:last-child {
+    margin-bottom: 1px;
+  }
 
-.activitiesContainer {
-  margin-top: 75px;
+  #roomDescription {
+    width: 90%;
+  }
 }
 
 .banner {

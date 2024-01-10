@@ -16,36 +16,36 @@ require '../app/views/header.php';
             <h2> Välj ett av våra rum</h2>
             <ul class="cards">
                 <li class="cards__item">
-                    <a class="room-button" id="cheapRoomButton" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 1}' hx-swap="none">
+                    <a href="#calendar" class="room-button" id="cheapRoomButton" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 1}' hx-swap="none">
                         <div class="card">
                             <div class="card__image card__image--cheap"></div>
                             <div class="card__content">
-                                <div class="card__title">Flex</div>
-                                <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>
+                                <div class="card__title">Mysig Sjöbod</div>
+                                <p class="card__text">Upptäck charmen i vår Mysiga Sjöbod, det perfekta valet för den prismedvetna resenären som inte vill kompromissa med kvalitet och upplevelse. Detta gemytligt inredda rum andas en rustik och marin atmosfär, perfekt för att koppla av efter en dag av upptäcktsfärder. Utrustad med bekväma sängar och utsikt över det lugna havet, erbjuder Sjöboden en fristad där du kan slappna av och lyssna till vågornas lugnande brus.</p>
                                 <p id="cheapRoomPrice"></p>
                             </div>
                         </div>
                     </a>
                 </li>
                 <li class="cards__item">
-                    <a class="room-button" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 2}' hx-swap="none">
+                    <a href="#calendar" class="room-button" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 2}' hx-swap="none">
                         <div class="card">
                             <div class="card__image card__image--medium"></div>
                             <div class="card__content">
-                                <div class="card__title">Flex Grow</div>
-                                <p class="card__text">This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.</p>
+                                <div class="card__title">Vinga Fyr</div>
+                                <p class="card__text">Bo i hjärtat av Vingas historia i vårt medeldyra rum, Vinga Fyr. Detta unika rum erbjuder en oslagbar kombination av komfort och historisk charm. Med sin autentiska inredning och moderna bekvämligheter, ger rummet dig en känsla av att vara en del av öns sjöfarararv. Vakna upp till en betagande utsikt över det oändliga havet och njut av den fridfulla atmosfären som bara en fyrmästare kunde uppleva.</p>
                                 <p id="mediumRoomPrice"></p>
                             </div>
                         </div>
                     </a>
                 </li>
                 <li class="cards__item">
-                    <a class="room-button" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 3}' hx-swap="none">
+                    <a href="#calendar" class="room-button" hx-get="getBookings.php" hx-trigger="click" hx-target="#calendar" hx-vals='{"room_id": 3}' hx-swap="none">
                         <div class="card">
                             <div class="card__image card__image--expensive"></div>
                             <div class="card__content">
-                                <div class="card__title">Flex Shrink</div>
-                                <p class="card__text">This defines the ability for a flex item to shrink if necessary. Negative numbers are invalid.</p>
+                                <div class="card__title">Lyxig Kaptengård</div>
+                                <p class="card__text">För den mest kräsne gästen presenterar vi vår Lyxiga Kaptengård. Detta rum är en verklig tillflyktsort av lyx och komfort. Med sitt sofistikerade inredningskoncept som kombinerar traditionell elegans med moderna inslag, erbjuder Kaptengården en upplevelse utöver det vanliga. Njut av rummets exklusiva faciliteter, inklusive en privat terrass med utsikt över den storslagna skärgården. Vår Lyxiga Kaptengård är inte bara ett rum, det är en upplevelse som berikar din själ och förnyar ditt sinne.</p>
                                 <p id="expensiveRoomPrice"></p>
                             </div>
                         </div>

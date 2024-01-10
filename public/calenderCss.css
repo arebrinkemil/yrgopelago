@@ -18,6 +18,10 @@ input[type='date'] {
   border-radius: 3px;
 }
 
+#calendar {
+  max-height: 90vh;
+}
+
 .selected-range {
   background-color: #5f99f5 !important;
 }
@@ -235,6 +239,10 @@ label img {
 .rooms {
   margin: 100px 0;
   position: relative;
+}
+
+.room-button {
+  text-decoration: none;
 }
 
 #activitiesContainer {

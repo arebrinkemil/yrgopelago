@@ -7,7 +7,7 @@
             <span class="line line3"></span>
         </div>
         <ul class="menu-items">
-            <li> <a href="/public/rooms.php" class="nav-item">Rum</a></li>
+            <!-- <li> <a href="/public/rooms.php" class="nav-item">Rum</a></li> -->
             <li><a href="/public/calender.php" class="nav-item">Boka</a></li>
             <li><a href="/public/login.php" class="nav-item">Login</a></li>
 

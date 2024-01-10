@@ -63,8 +63,11 @@ require '../app/views/header.php';
 
                 </div>
             </div>
+            <p id="roomDescription">Select a room to see its description.</p>
         </section>
         <section class="image-carousel wide">
+
+            <p>Upptäck Vingas rika historia – en ö som är en del av Göteborgs skärgård och har varit ett viktigt landmärke för sjöfarare i århundraden. Vinga är känt för sin berömda fyr, en av Sveriges mest ikoniska, som har väglett sjömän sedan 1800-talet. Ön har en fascinerande historia, från dess tidiga dagar som fiskarsamhälle till dess nuvarande status som en pittoresk turistdestination. Promenera längs de smala stigarna och känn historiens vingslag i varje steg.</p>
             <div class="glide heropeek">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
@@ -86,6 +89,7 @@ require '../app/views/header.php';
         </section>
         <section class="about wide">
             <h3 class="top-left-text">Våra paket</h3>
+            <p>Njut av avkoppling och äventyr på Vinga. Vårt hotell erbjuder inte bara komfort och avkoppling, utan också en mängd aktiviteter för den äventyrlige. Utforska öns naturlandskap genom vandring eller delta i guidade turer för att lära dig mer om Vingas unika flora och fauna. För de som älskar havet, erbjuder vi kajakpaddling och fisketurer. Efter en dag full av äventyr, koppla av i vårt spa eller njut av en god bok i vår mysiga lounge.</p>
 
             <div id="activitiesContainer"></div>
 
@@ -99,6 +103,12 @@ require '../app/views/header.php';
 
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
     <script>
+        const roomDescriptions = {
+            sjobod: "Upptäck charmen i vår Mysiga Sjöbod, det perfekta valet för den prismedvetna resenären som inte vill kompromissa med kvalitet och upplevelse. Detta gemytligt inredda rum andas en rustik och marin atmosfär, perfekt för att koppla av efter en dag av upptäcktsfärder. Utrustad med bekväma sängar och utsikt över det lugna havet, erbjuder Sjöboden en fristad där du kan slappna av och lyssna till vågornas lugnande brus.",
+            fyrtorn: "Bo i hjärtat av Vingas historia i vårt medeldyra rum, Vinga Fyr. Detta unika rum erbjuder en oslagbar kombination av komfort och historisk charm. Med sin autentiska inredning och moderna bekvämligheter, ger rummet dig en känsla av att vara en del av öns sjöfarararv. Vakna upp till en betagande utsikt över det oändliga havet och njut av den fridfulla atmosfären som bara en fyrmästare kunde uppleva.",
+            kaptengard: "För den mest kräsne gästen presenterar vi vår Lyxiga Kaptengård. Detta rum är en verklig tillflyktsort av lyx och komfort. Med sitt sofistikerade inredningskoncept som kombinerar traditionell elegans med moderna inslag, erbjuder Kaptengården en upplevelse utöver det vanliga. Njut av rummets exklusiva faciliteter, inklusive en privat terrass med utsikt över den storslagna skärgården. Vår Lyxiga Kaptengård är inte bara ett rum, det är en upplevelse som berikar din själ och förnyar ditt sinne."
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             var roomListItems = document.querySelectorAll('.room-list li');
             roomListItems.forEach(function(item) {
@@ -112,6 +122,10 @@ require '../app/views/header.php';
                     var imagePath = 'images/' + roomType + '.png';
 
                     document.getElementById('roomImage').src = imagePath;
+
+                    var roomType = this.getAttribute('data-room');
+                    var descriptionText = roomDescriptions[roomType];
+                    document.getElementById('roomDescription').textContent = descriptionText;
                 });
             });
 
@@ -135,6 +149,7 @@ require '../app/views/header.php';
         });
 
         function createActivityCheckboxes(activities) {
+            console.log(activities);
             const container = document.getElementById('activitiesContainer');
             container.classList.add('grid-container');
 
@@ -142,28 +157,33 @@ require '../app/views/header.php';
                 const activityWrapper = document.createElement('div');
                 activityWrapper.classList.add('grid-item', 'activity-wrapper');
 
+                const image = document.createElement('img');
+
+                image.src = 'images/' + activity.image_url;
+                image.alt = activity.name;
+                image.classList.add('activity-image');
+
                 const gridContent = document.createElement('div');
                 gridContent.classList.add('grid-content');
 
                 const h3 = document.createElement('h3');
                 h3.classList.add('activity-h3');
-                h3.textContent = `${activity.name} - $${activity.cost} `;
-
+                h3.textContent = `${activity.name} - $${activity.cost}`;
 
                 const description = document.createElement('p');
                 description.classList.add('activity-description');
-                description.textContent = activity.description.length > 100 ? activity.description.substring(0, 100) + "..." : activity.description;
-
+                description.textContent = activity.description;
 
                 gridContent.appendChild(h3);
-
                 gridContent.appendChild(description);
 
+                activityWrapper.appendChild(image);
                 activityWrapper.appendChild(gridContent);
 
                 container.appendChild(activityWrapper);
             });
         }
+
 
 
 

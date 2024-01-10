@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  document.getElementById('cheapRoomButton').click();
+  //document.getElementById('cheapRoomButton').click();
 
   fetch('getPrices.php')
     .then((response) => response.json())
