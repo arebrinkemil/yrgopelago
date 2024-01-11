@@ -15,7 +15,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
 
-$guestName = isset($data['guestName']) ? htmlspecialchars($data['guestName'], ENT_QUOTES, 'UTF-8') : null;
+$guestName = $data['guestName'] ?? null;
 $startDate = isset($data['startDate']) ? htmlspecialchars($data['startDate'], ENT_QUOTES, 'UTF-8') : null;
 $endDate = isset($data['endDate']) ? htmlspecialchars($data['endDate'], ENT_QUOTES, 'UTF-8') : null;
 $roomType = isset($data['roomType']) ? htmlspecialchars($data['roomType'], ENT_QUOTES, 'UTF-8') : null;
