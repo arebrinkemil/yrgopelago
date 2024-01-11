@@ -12,12 +12,17 @@ header('Content-Type: application/json');
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-$guestName = $data['guestName'] ?? null;
-$startDate = $data['startDate'] ?? null;
-$endDate = $data['endDate'] ?? null;
+
+
+$guestName = isset($data['guestName']) ? htmlspecialchars($data['guestName'], ENT_QUOTES, 'UTF-8') : null;
+$startDate = isset($data['startDate']) ? htmlspecialchars($data['startDate'], ENT_QUOTES, 'UTF-8') : null;
+$endDate = isset($data['endDate']) ? htmlspecialchars($data['endDate'], ENT_QUOTES, 'UTF-8') : null;
 $roomType = $data['roomType'] ?? null;
-$paymentKey = $data['paymentKey'] ?? null;
-$activities = $data['activities'] ?? [];
+$paymentKey = isset($data['paymentKey']) ? htmlspecialchars($data['paymentKey'], ENT_QUOTES, 'UTF-8') : null;
+$activities = isset($data['activities']) ? $data['activities'] : [];
+$activities = array_map(function ($activity) {
+    return htmlspecialchars($activity, ENT_QUOTES, 'UTF-8');
+}, $activities);
 
 
 
