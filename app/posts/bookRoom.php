@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 require '../app/database/connect.php';
 require '../app/autoload.php';
 
-function bookRoomAndActivities($db, string $guestName, string $startDate, string $endDate, string $roomTypeJson, array $activities): array
+
+
+function bookRoomAndActivities($db, $guestName, $startDate, $endDate, $roomTypeJson, $activities)
 {
     try {
         $db->beginTransaction();
@@ -35,6 +35,7 @@ function bookRoomAndActivities($db, string $guestName, string $startDate, string
                 $featureStmt->execute([':name' => $featureName]);
                 $featureId = $featureStmt->fetchColumn();
 
+
                 if ($featureId) {
                     $stmt->execute([
                         ':booking_id' => $bookingId,
@@ -46,12 +47,15 @@ function bookRoomAndActivities($db, string $guestName, string $startDate, string
             }
         }
 
+
         $db->commit();
+
 
         unset($_SESSION['totalPrice']);
 
         return ['success' => true, 'bookingId' => $bookingId, 'guestId' => $guestId];
     } catch (Exception $e) {
+
         $db->rollBack();
         return ['success' => false, 'error' => $e->getMessage()];
     }

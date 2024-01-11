@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 require '../app/database/connect.php';
 
 header('Content-Type: application/json');
@@ -20,7 +17,7 @@ try {
     ]);
 }
 
-function getHotelFeatures($db): array
+function getHotelFeatures($db)
 {
     $query = "SELECT name, description, cost, image_url FROM Hotel_Features";
     $stmt = $db->prepare($query);

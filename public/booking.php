@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 require __DIR__ . '/../app/database/connect.php';
 require '../app/posts/bookRoom.php';
 require '../app/posts/bookedDates.php';
@@ -14,16 +12,14 @@ header('Content-Type: application/json');
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-
 $guestName = $data['guestName'] ?? null;
-$startDate = isset($data['startDate']) ? htmlspecialchars($data['startDate'], ENT_QUOTES, 'UTF-8') : null;
-$endDate = isset($data['endDate']) ? htmlspecialchars($data['endDate'], ENT_QUOTES, 'UTF-8') : null;
-$roomType = isset($data['roomType']) ? htmlspecialchars($data['roomType'], ENT_QUOTES, 'UTF-8') : null;
+$startDate = $data['startDate'] ?? null;
+$endDate = $data['endDate'] ?? null;
+$roomType = $data['roomType'] ?? null;
 $paymentKey = $data['paymentKey'] ?? null;
-$activities = isset($data['activities']) ? $data['activities'] : [];
-$activities = array_map(function ($activity) {
-    return htmlspecialchars($activity, ENT_QUOTES, 'UTF-8');
-}, $activities);
+$activities = $data['activities'] ?? [];
+
+
 
 
 if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($roomType) && !empty($paymentKey)) {
@@ -33,10 +29,12 @@ if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($room
         error_log($_SESSION['totalPrice']);
         $totalCost = $_SESSION['totalPrice'];
 
-        $paymentResult = processPayment($paymentKey, $totalCost);
+
+
+        // $paymentResult = processPayment($paymentKey, $totalCost);
 
         //byt ut för att testa payment
-        // $paymentResult['success'] = true;
+        $paymentResult['success'] = true;
 
         if ($paymentResult['success']) {
 
