@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 header('Content-Type: application/json');
 require '../app/database/connect.php';
 require '../app/autoload.php';
 
-
-
-function calculateDays($startDate, $endDate)
+function calculateDays(string $startDate, string $endDate): int
 {
     $start = new DateTime($startDate);
     $end = new DateTime($endDate);
@@ -14,18 +14,18 @@ function calculateDays($startDate, $endDate)
     return $start->diff($end)->days;
 }
 
-function getRoomPrice($db, $roomType)
+function getRoomPrice(PDO $db, int $roomType): float
 {
     $stmt = $db->prepare("SELECT price FROM Rooms WHERE room_id = ?");
     $stmt->execute([$roomType]);
-    return $stmt->fetchColumn();
+    return (float) $stmt->fetchColumn();
 }
 
-function getFeatureCost($db, $featureName)
+function getFeatureCost(PDO $db, string $featureName): float
 {
     $stmt = $db->prepare("SELECT cost FROM Hotel_Features WHERE name = ?");
     $stmt->execute([$featureName]);
-    return $stmt->fetchColumn();
+    return (float) $stmt->fetchColumn();
 }
 
 $_SESSION['totalPrice'] = 0;
@@ -37,7 +37,7 @@ if (!$input) {
     exit;
 }
 $roomTypeJson = json_decode($input['roomType'], true);
-$roomType = $roomTypeJson['room_id'];
+$roomType = (int) $roomTypeJson['room_id'];
 
 $startDate = $input['startDate'];
 $endDate = $input['endDate'];
@@ -62,7 +62,6 @@ foreach ($activities as $activity) {
     }
     $featuresCost += $featureCost;
 }
-
 
 $discount = 0;
 if ($totalDays >= 3) {

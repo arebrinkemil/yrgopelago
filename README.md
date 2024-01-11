@@ -1,16 +1,41 @@
-WHY NOT A GIF HERE? TO SET THE MOOD.
+![Alt text](https://media.giphy.com/media/3oKIPaGG4PDQgQDFZe/giphy.gif)
 
-# Island name
+# Vinga
 
-Some text about your lovely island
+Vinga is a small Swedish island located at the entrance of Gothenburg's harbor. It's famous for its lighthouse, originally built in 1841, and is a popular destination for its picturesque natural scenery and its historic significance in maritime navigation.
 
-# Hotel name
+# Vinga hotel
 
-Why not add some info about the hotel of your dreams?
+Vinga hotel is a finctional hotel on the island Vinga. I took inspiration from the real hotel on Paternoster which is a very similar island to Vinga.
 
 # Instructions
 
-If your project requires some installation or similar, please inform your user 'bout it. For instance, if you want a more decent indentation of your .php files, you could edit [.editorconfig]('/.editorconfig').
+This is a booking system for Yrgopelago, a fictional hotel called Vinga hotel. The system allows users to book rooms and activities for specific dates.
+
+## Features
+
+-   User authentication
+-   Room booking
+-   Activity booking
+-   Price calculation
+-   Admin panel for managing rooms and activities
+
+## Installation
+
+1. Clone the repository:
+
+```sh
+git clone https://github.com/yourusername/yrgopelago.git
+
+2. Install PHP dependencies:
+composer install
+
+3. Install JavaScript dependencies:
+npm install
+
+
+
+
 
 # Code review
 
@@ -25,4 +50,5 @@ If your project requires some installation or similar, please inform your user '
 9. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
 10. example.js:10-15 - Remember to think about X and this could be refactored using the amazing Y function.
 
-43d6728a-c059-4770-bf1d-c964dd1f9599
+
+```

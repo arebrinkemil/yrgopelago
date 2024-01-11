@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 require '../app/database/connect.php';
 require '../app/autoload.php';
 
@@ -20,7 +23,7 @@ try {
     ]);
 }
 
-function getRoomPrices($db)
+function getRoomPrices($db): array
 {
     $query = "SELECT room_type, price FROM Rooms";
     $stmt = $db->prepare($query);
@@ -28,7 +31,7 @@ function getRoomPrices($db)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getHotelFeatures($db)
+function getHotelFeatures($db): array
 {
     $query = "SELECT name, cost FROM Hotel_Features";
     $stmt = $db->prepare($query);
