@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('bookingModal').style.display = 'flex';
         })
         .catch((error) => {
+          console.log(data);
           console.error('Error:', error);
         });
     });
