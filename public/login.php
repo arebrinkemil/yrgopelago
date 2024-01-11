@@ -20,21 +20,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 require '../app/views/header.php';
 
-require '../app/views/navbar.php';
-
 ?>
-<h1>Admin Login</h1>
-<?php if (!empty($error)) {
-    echo "<p>$error</p>";
-} ?>
-<form method="post" action="">
-    <label for="api_key">API Key:</label>
-    <input type="password" id="api_key" name="api_key" required>
-    <button type="submit">Login</button>
-</form>
-<?php
+<link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <?php
+    require '../app/views/navbar.php';
+
+    ?>
+    <div class="login-container">
+
+        <h1>Admin Login</h1>
+        <?php if (!empty($error)) {
+            echo "<p>$error</p>";
+        } ?>
+        <form method="post" action="">
+            <label for="api_key">API Key:</label>
+            <input type="password" id="api_key" name="api_key" required>
+            <button type="submit">Login</button>
+        </form>
+
+    </div>
+    <?php
 
 
 
-require '../app/views/footer.php';
-?>
+    require '../app/views/footer.php';
+    ?>

@@ -28,8 +28,7 @@ function getFeatureCost($db, $featureName)
     return $stmt->fetchColumn();
 }
 
-
-unset($_SESSION['totalPrice']);
+$_SESSION['totalPrice'] = 0;
 
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -64,10 +63,16 @@ foreach ($activities as $activity) {
     $featuresCost += $featureCost;
 }
 
-$totalPrice = $roomCost + $featuresCost;
 
+$discount = 0;
+if ($totalDays >= 3) {
+    $discount = 0.3 * ($roomCost + $featuresCost);
+}
+
+$totalPrice = $roomCost + $featuresCost - $discount;
+
+$totalPrice = round($totalPrice);
 
 $_SESSION['totalPrice'] = $totalPrice;
-
 
 echo json_encode(['totalPrice' => $totalPrice]);

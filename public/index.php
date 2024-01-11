@@ -21,14 +21,13 @@ require '../app/views/header.php';
                 <div id="hero-container">
                     <p>Vinga Hotell</p>
                     <h1 class="title">Upptäck Vingas skönhet.<br>Din kustnära oas</h1>
-                    <p>Lorem ipsum</p>
+
                 </div>
 
                 <div id="hero-image">
                     <img src="https://source.unsplash.com/bnt4w5jqgmo" width="100%" height="100%" />
-                    <button class="small-button">
-                        Boka här →
-                    </button>
+                    <a href="calender.php" class="small-button">Boka rum</a>
+
                 </div>
             </div>
         </section>
@@ -50,7 +49,7 @@ require '../app/views/header.php';
         </div>
 
         <section class="hotel-rooms tight">
-            <h3 class="top-left-text">Våra rum</h3>
+            <h2 class="top-left-text">Våra rum</h2>
             <div class="room-section">
                 <ul class="room-list">
                     <li data-room="sjobod">Mysig Sjöbod</li>
@@ -64,10 +63,25 @@ require '../app/views/header.php';
                 </div>
             </div>
             <p id="roomDescription">Select a room to see its description.</p>
+            <a href="calender.php" class="small-button">Boka rum</a>
         </section>
-        <section class="image-carousel wide">
 
-            <p>Upptäck Vingas rika historia – en ö som är en del av Göteborgs skärgård och har varit ett viktigt landmärke för sjöfarare i århundraden. Vinga är känt för sin berömda fyr, en av Sveriges mest ikoniska, som har väglett sjömän sedan 1800-talet. Ön har en fascinerande historia, från dess tidiga dagar som fiskarsamhälle till dess nuvarande status som en pittoresk turistdestination. Promenera längs de smala stigarna och känn historiens vingslag i varje steg.</p>
+        <div class="video-section">
+            <video autoplay muted loop id="background-video">
+                <source src="/public/images/pexels-rostislav-uzunov-7513671 (Original).mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            <div class="video-overlay">
+                <h1>Vinga – en naturskön pärla i Göteborgs skärgård.</h1>
+                <p> Denna vackra ö erbjuder en perfekt tillflyktsort från stadens brus. Här kan du njuta av ostörd natur, klippiga stränder och kristallklart vatten</p>
+            </div>
+        </div>
+
+        <section class="image-carousel wide">
+            <div class="history">
+                <h2> Upptäck Vingas rika historia </h2>
+                <p>En ö som är en del av Göteborgs skärgård och har varit ett viktigt landmärke för sjöfarare i århundraden. Vinga är känt för sin berömda fyr, en av Sveriges mest ikoniska, som har väglett sjömän sedan 1800-talet. Ön har en fascinerande historia, från dess tidiga dagar som fiskarsamhälle till dess nuvarande status som en pittoresk turistdestination. Promenera längs de smala stigarna och känn historiens vingslag i varje steg.</p>
+            </div>
             <div class="glide heropeek">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
@@ -88,9 +102,10 @@ require '../app/views/header.php';
 
         </section>
         <section class="about wide">
-            <h3 class="top-left-text">Våra paket</h3>
-            <p>Njut av avkoppling och äventyr på Vinga. Vårt hotell erbjuder inte bara komfort och avkoppling, utan också en mängd aktiviteter för den äventyrlige. Utforska öns naturlandskap genom vandring eller delta i guidade turer för att lära dig mer om Vingas unika flora och fauna. För de som älskar havet, erbjuder vi kajakpaddling och fisketurer. Efter en dag full av äventyr, koppla av i vårt spa eller njut av en god bok i vår mysiga lounge.</p>
-
+            <div class="package-info">
+                <h2 class="top-left-text">Våra paket</h2>
+                <p>Njut av avkoppling och äventyr på Vinga. Vårt hotell erbjuder inte bara komfort och avkoppling, utan också en mängd aktiviteter för den äventyrlige. Utforska öns naturlandskap genom vandring eller delta i guidade turer för att lära dig mer om Vingas unika flora och fauna. För de som älskar havet, erbjuder vi kajakpaddling och fisketurer. Efter en dag full av äventyr, koppla av i vårt spa eller njut av en god bok i vår mysiga lounge.</p>
+            </div>
             <div id="activitiesContainer"></div>
 
 

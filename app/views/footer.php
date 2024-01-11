@@ -1,25 +1,27 @@
 <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>About Us</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet.</p>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                VINGA HOTELL
+            </div>
+            <div class="footer-links">
+                <ul class="footer-menu">
+                    <li><a href="/public/calender.php" class="nav-item">Boka</a></li>
+                    <li><a href="/public/login.php" class="nav-item">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Phone: 123-456-7890</p>
-            <p>Email: info@example.com</p>
+        <div class="footer-bottom">
+            <p>Emil Årebrink Yrgo 2024</p>
         </div>
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <p>
-                <a href="#">Facebook</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Instagram</a>
-            </p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 MyWebsite, Inc. All rights reserved.</p>
     </div>
 </footer>
 </body>

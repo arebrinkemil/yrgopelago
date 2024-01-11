@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById(
             'totalCostDisplay'
           ).textContent = `Total Price: $${data.totalPrice}`;
-          document.getElementById('bookingModal').style.display = 'block';
+          document.getElementById('bookingModal').style.display = 'flex';
         })
         .catch((error) => {
           console.error('Error:', error);

@@ -74,20 +74,22 @@ require '../app/views/header.php';
 
 
             <input type="hidden" id="selectedRoomType" name="roomType" />
-            <div id="bookingModal" class="modal">
+            <div id="bookingModal" class="modal" style="display: none;">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <h2>Complete Your Booking</h2>
-                    <label for="guestName">Name:</label>
-                    <input type="text" id="guestName" name="guestName" />
+                    <div class="booking-info">
+                        <h2>Betalning</h2>
+                        <label for="guestName">Namn:</label>
+                        <input type="text" id="guestName" name="guestName" />
 
-                    <label for="paymentKey">Payment API Key:</label>
-                    <input type="text" id="paymentKey" name="paymentKey" />
-                    <div id="totalCostDisplay"></div>
-                    <button id="payButton">Pay</button>
+                        <label for="paymentKey">TransferCode:</label>
+                        <input type="text" id="paymentKey" name="paymentKey" />
+                        <div id="totalCostDisplay"></div>
+                    </div>
+                    <button id="payButton" style=" width: 100%;" class="small-button book-button" type="submit">Book Now</button>
                 </div>
             </div>
-            <button class="small-button" type="submit">Book Now</button>
+            <button style="width: 100%;" class="small-button book-button" type="submit">Book Now</button>
         </form>
     </main>
     <script>

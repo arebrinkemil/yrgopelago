@@ -23,7 +23,7 @@ $activities = $data['activities'] ?? [];
 
 
 if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($roomType) && !empty($paymentKey)) {
-    // First, check room availability
+
     $availability = checkRoomAvailability($db, $startDate, $endDate, $roomType);
     if ($availability === true) {
         error_log($_SESSION['totalPrice']);
@@ -46,18 +46,18 @@ if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($room
                     //ändra till variabler och ta bort status
 
                     'status' => 'success',
-                    "island" => "Main island",
-                    "hotel" => "Centralhotellet",
+                    "island" => "Vinga",
+                    "hotel" => "Vinga Hotell",
                     "arrival_date" => $startDate,
                     "departure_date" => $endDate,
-                    "total_cost" => $_SESSION['totalPrice'],
-                    "stars" => 3,
+                    "total_cost" => $totalCost,
+                    "stars" => 5,
                     "features" => [
                         $activities
                     ],
                     "additional_info" => [
-                        "greeting" => "Thank you for choosing Centralhotellet",
-                        "imageUrl" => "https://upload.wikimedia.org/wikipedia/commons/e/e2/Hotel_Boscolo_Exedra_Nice.jpg",
+                        "greeting" => "Tack för att du valde Vinga Hotell!",
+                        "imageUrl" => "https://upload.wikimedia.org/wikipedia/commons/e/e1/Lighthouse_of_Island_of_Vinga.jpg",
                         'message' => 'Booking successful',
                         'bookingId' => $bookingResult['bookingId'],
                         'guestId' => $bookingResult['guestId'],
