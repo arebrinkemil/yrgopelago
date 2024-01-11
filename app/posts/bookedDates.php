@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function checkRoomAvailability($db, $startDate, $endDate, $roomTypeJson)
+function checkRoomAvailability($db, string $startDate, string $endDate, string $roomTypeJson): bool
 {
 
     $roomTypeArray = json_decode($roomTypeJson, true);
@@ -31,7 +31,7 @@ function checkRoomAvailability($db, $startDate, $endDate, $roomTypeJson)
 
     if ($count > 0) {
 
-        return "The selected room is not available for the specified dates.";
+        return false;
     } else {
 
         return true;

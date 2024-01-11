@@ -1,10 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 require '../app/database/connect.php';
 
 $roomId = $_GET['room_id'] ?? null;
 
 if ($roomId === null) {
-
     exit;
 }
 

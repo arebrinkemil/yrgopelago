@@ -1,11 +1,14 @@
 <?php
+
+declare(strict_types=1);
+
 session_start();
 
 $env = parse_ini_file(__DIR__ . '/../.env');
-echo $env['API_KEY'];
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $inputApiKey = $_POST['api_key'];
+    $inputApiKey = htmlspecialchars($_POST['api_key']);
 
     if ($inputApiKey == $env['API_KEY']) {
         $_SESSION['is_admin'] = true;
@@ -43,8 +46,6 @@ require '../app/views/header.php';
 
     </div>
     <?php
-
-
 
     require '../app/views/footer.php';
     ?>

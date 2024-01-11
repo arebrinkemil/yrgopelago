@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require '../app/views/header.php';
 ?>
 
@@ -85,7 +87,7 @@ require '../app/views/header.php';
     </script>
 
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxCrBnSzhHbdYJcImfjPrc2NqrdXX0cS8&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
     </script>
 </body>
 

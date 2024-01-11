@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require '../app/views/header.php';
 ?>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.0.2/css/glide.core.css" rel="stylesheet">
