@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1); // Add strict types declaration
+declare(strict_types=1);
 
 require '../app/database/connect.php';
 
@@ -20,7 +20,7 @@ try {
     ]);
 }
 
-function getHotelFeatures(PDO $db): array // Add type declaration for $db parameter and return type declaration
+function getHotelFeatures(PDO $db): array
 {
     $query = "SELECT name, description, cost, image_url FROM Hotel_Features";
     $stmt = $db->prepare($query);

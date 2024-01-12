@@ -2,7 +2,7 @@
 session_start();
 
 $env = parse_ini_file(__DIR__ . '/../.env');
-echo $env['API_KEY'];
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $inputApiKey = $_POST['api_key'];
