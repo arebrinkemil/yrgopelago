@@ -1,0 +1,146 @@
+# logbook
+
+```
+Transfer Code Validation Response: Array
+(
+    [transferCode] => 14cb8544-5344-43cc-b794-cb8408229726
+    [fromAccount] => 3
+    [amount] => 16.7
+)
+
+```
+
+```
+{
+    "island": "Hiss Ingen Island",
+    "hotel": "P\u00f6l Harbor Hotel",
+    "stars": "3",
+    "addtional_info": {
+        "greeting": "Thank you for choosing P\u00f6l Harbor Hotel",
+        "checkin": "Checkin is at 15:00"
+    },
+    "arrival_date": "2024-01-07",
+    "departure_date": "2024-01-10",
+    "total_cost": "16.7",
+    "features": [
+        {
+            "name": "Figma",
+            "cost": 2
+        }
+    ]
+}
+```
+
+{"island":"Isle of dogs","hotel":"Belmond Cockapoo Palace","arrival_date":"2024-01-01","departure_date":"2024-01-03","total_cost":13,"stars":"3","features":[{"name":"Bring human","price":1}],"additional_info":{"greeting":"Thank you for chosing Belmond Cockapoo Palace."}}
+
+{
+"island": "Terra Verde",
+"hotel": "Harvest Haven",
+"arrival_date": "2024-01-01",
+"departure_date": "2024-01-04",
+"total_cost": 17,
+"stars": "4",
+"features": [
+{
+"name": "dinner",
+"cost": 4
+}
+],
+"additional_info": {
+"greeting": "Thank you for choosing Harvest Haven",
+"imageUrl": "No image at the moment"
+}
+}
+
+[
+    {
+
+**"island"**
+
+: "Jurassic Island",
+
+**"name"**
+
+: "Jurassic Hotel",
+
+**"arrival_date"**
+
+: "25-01-2024",
+
+**"departure_date"**
+
+: "27-01-2024",
+
+**"room_type"**
+
+: "Standard",
+
+**"total_cost"**
+
+: 11.199999999999999289457264239899814128875732421875,
+
+**"booking_id"**
+
+: 9,
+
+**"stars"**
+
+: "4",
+
+**"features"**
+
+: [
+            {
+
+**"name"**
+
+: "Visit the incubation room",
+
+**"price"**
+
+: 2
+            }
+        ],
+
+**"additional_info"**
+
+: [
+            {
+
+**"greeting"**
+
+: "Thank you for choosing Jurassic Hotel",
+
+**"dino"**
+
+: "Atlasaurus",
+
+**"dinoURL"**
+
+: "https://en.wikipedia.org/wiki/Atlasaurus"
+            }
+        ]
+    }
+]
+
+Hello Emil!
+
+Welcome to Casa Olive
+
+We are happy that you have chosen to stay at Casa Olive and wish you a happy stay.
+
+Down below are some important information about your stay:
+
+Island: Islandistan
+
+Dates: 2024-01-28, 2024-01-29
+
+Room Type: Standard
+
+Feature: Massage
+
+Cost for feature: $5
+
+Totalcost: $21
+
+Mvh Linus Holm
