@@ -12,6 +12,50 @@ Vinga hotel is a finctional hotel on the island Vinga. I took inspiration from t
 
 This is a booking system for Yrgopelago, a fictional hotel called Vinga hotel. The system allows users to book rooms and activities for specific dates.
 
+# Databas
+
+CREATE TABLE Rooms (
+    room_id INTEGER PRIMARY KEY,
+    room_type TEXT NOT NULL,
+    price INTEGER NOT NULL 
+);
+
+CREATE TABLE Guests (
+    guest_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+    
+);
+
+CREATE TABLE Bookings (
+    booking_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    guest_id INTEGER NOT NULL,
+    room_id INTEGER NOT NULL,
+    arrival_date DATE NOT NULL,
+    departure_date DATE NOT NULL,
+    total_cost INTEGER NOT NULL,
+    FOREIGN KEY (guest_id) REFERENCES Guests(guest_id),
+    FOREIGN KEY (room_id) REFERENCES Rooms(room_id)
+);
+
+
+CREATE TABLE Hotel_Features (
+    feature_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    description TEXT,
+    cost INTEGER NOT NULL
+);
+
+CREATE TABLE Booking_Features (
+    booking_id INTEGER NOT NULL,
+    feature_id INTEGER NOT NULL,
+    FOREIGN KEY (booking_id) REFERENCES Bookings(booking_id),
+    FOREIGN KEY (feature_id) REFERENCES Hotel_Features(feature_id)
+);
+
+INSERT INTO Rooms (room_id, room_type, price) VALUES (1, 'Budget', 5);
+INSERT INTO Rooms (room_id, room_type, price) VALUES (2, 'Standard', 10);
+INSERT INTO Rooms (room_id, room_type, price) VALUES (3, 'Luxury', 20);
+
 ## Features
 
 -   User authentication
