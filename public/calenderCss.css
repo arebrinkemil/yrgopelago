@@ -127,15 +127,15 @@ img {
 }
 
 .card__image--cheap {
-  background-image: url(/public/images/sjobod.png);
+  background-image: url(/yrgopelago/public/images/sjobod.png);
 }
 
 .card__image--medium {
-  background-image: url(/public/images/fyrtorn.png);
+  background-image: url(/yrgopelago/public/images/fyrtorn.png);
 }
 
 .card__image--expensive {
-  background-image: url(/public/images/kaptengard.png);
+  background-image: url(/yrgopelago/public/images/kaptengard.png);
 }
 
 .card__title {

@@ -44,7 +44,7 @@ require '../app/views/header.php';
             </div>
             <div class="image-section">
 
-                <img src="/public/images/vingafyr.png" alt="Banner Image">
+                <img src="/yrgopelago/public/images/vingafyr.png" alt="Banner Image">
             </div>
         </div>
 
@@ -68,7 +68,7 @@ require '../app/views/header.php';
 
         <div class="video-section">
             <video autoplay muted loop id="background-video">
-                <source src="/public/images/pexels-rostislav-uzunov-7513671 (Original).mp4" type="video/mp4">
+                <source src="/yrgopelago/public/images/pexels-rostislav-uzunov-7513671(Original).mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
             <div class="video-overlay">

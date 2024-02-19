@@ -6,8 +6,8 @@
             </div>
             <div class="footer-links">
                 <ul class="footer-menu">
-                    <li><a href="/public/calender.php" class="nav-item">Boka</a></li>
-                    <li><a href="/public/login.php" class="nav-item">Login</a></li>
+                    <li><a href="/yrgopelago/public/calender.php" class="nav-item">Boka</a></li>
+                    <li><a href="/yrgopelago/public/login.php" class="nav-item">Login</a></li>
                 </ul>
             </div>
             <div class="footer-social">

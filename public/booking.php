@@ -36,10 +36,10 @@ if (!empty($guestName) && !empty($startDate) && !empty($endDate) && !empty($room
 
 
 
-        // $paymentResult = processPayment($paymentKey, $totalCost);
+        $paymentResult = processPayment($paymentKey, $totalCost);
 
         //byt ut för att testa payment
-        $paymentResult['success'] = true;
+        //$paymentResult['success'] = true;
 
         if ($paymentResult['success']) {
 

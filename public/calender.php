@@ -107,7 +107,7 @@ require '../app/views/header.php';
             });
         });
     </script>
-    <script src="/public/script.js"></script>
+    <script src="/yrgopelago/public/script.js"></script>
     <?php
     require '../app/views/footer.php';
     ?>
